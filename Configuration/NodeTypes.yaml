@@ -1,0 +1,91 @@
+##
+# A simple Frontend registration form
+#
+'TYPO3.Neos.NodeTypes:Page':
+  properties:
+    authenticationVisibility:
+      type: string
+      defaultValue: 'always'
+      ui:
+        label: 'Authentication Visibility'
+        reloadIfChanged: TRUE
+        inspector:
+          group: 'visibility'
+          editor: Content/Inspector/Editors/SelectBoxEditor
+          editorOptions:
+            values:
+              'always':
+                label: 'Always'
+              'hideAtAnyLogin':
+                label: 'Hide at any Login'
+              'showAtAnyLogin':
+                label: 'Show at any Login'
+'Flowpack.Neos.FrontendUserManager:Login':
+  superTypes:
+    - 'TYPO3.Neos:Plugin'
+  ui:
+    label: 'Frontend User Login'
+    icon: icon-user
+    group: plugins
+    inspector:
+      groups:
+        settings:
+          label: 'Plugin Settings'
+  properties:
+    redirect:
+      type: reference
+      ui:
+        label: 'Redirect after Login'
+        inspector:
+          group: settings
+          editorOptions:
+            nodeTypes:
+              - 'TYPO3.Neos.NodeTypes:Page'
+'Flowpack.Neos.FrontendUserManager:Logout':
+  superTypes:
+    - 'TYPO3.Neos:Plugin'
+  ui:
+    label: 'Frontend User Logout'
+    icon: icon-user
+    group: plugins
+    inspector:
+      groups:
+        settings:
+          label: Settings
+  properties:
+    redirect:
+      type: reference
+      ui:
+        label: 'Redirect after Logout'
+        inspector:
+          group: settings
+          editorOptions:
+            nodeTypes:
+              - 'TYPO3.Neos.NodeTypes:Page'
+'Flowpack.Neos.FrontendUserManager:Registration':
+  superTypes:
+    - 'TYPO3.Neos:Plugin'
+  ui:
+    label: 'Frontend User Register form'
+    icon: icon-user
+    group: plugins
+    inspector:
+      groups:
+        settings:
+          label: Settings
+  properties:
+    autoLogin:
+      type: boolean
+      ui:
+        label: 'Login after Registration'
+        inspector:
+          group: settings
+    redirect:
+      type: reference
+      ui:
+        label: 'Redirect after Registration'
+        inspector:
+          group: settings
+          editorOptions:
+            nodeTypes:
+              - 'TYPO3.Neos.NodeTypes:Page'

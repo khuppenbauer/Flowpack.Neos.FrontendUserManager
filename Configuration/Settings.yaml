@@ -1,0 +1,29 @@
+
+TYPO3:
+  Flow:
+    security:
+      authentication:
+        providers:
+          Typo3BackendProvider:
+            requestPatterns:
+              Flowpack\Neos\FrontendUserManager\Security\NeosRequestPattern: backend
+          FrontendProvider:
+            provider: PersistedUsernamePasswordProvider
+            requestPatterns:
+              Flowpack\Neos\FrontendUserManager\Security\NeosRequestPattern: frontend
+  Neos:
+    typoScript:
+      autoInclude:
+        Flowpack.Neos.FrontendUserManager: true
+  TypoScript:
+    rendering:
+      exceptionHandler: TYPO3\TypoScript\Core\ExceptionHandlers\ThrowingHandler
+    defaultContext:
+      Authentication: 'Flowpack\Neos\FrontendUserManager\Eel\AuthenticationHelper'
+Flowpack:
+  Neos:
+    FrontendUserManager:
+      providerName: FrontendProvider
+      registration:
+        defaultRole:
+          - 'Flowpack.Neos.FrontendUserManager:User'

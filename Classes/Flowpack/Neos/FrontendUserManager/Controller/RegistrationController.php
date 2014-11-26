@@ -13,7 +13,6 @@ use TYPO3\Flow\Security\Account;
 use TYPO3\Flow\Security\AccountFactory;
 use TYPO3\Flow\Security\AccountRepository;
 use TYPO3\Flow\Security\Authentication\TokenInterface;
-use TYPO3\Neos\Domain\Model\User;
 use TYPO3\Neos\Service\PluginService;
 use TYPO3\Party\Domain\Model\ElectronicAddress;
 use TYPO3\Party\Domain\Model\PersonName;
@@ -67,7 +66,7 @@ class RegistrationController extends AbstractBaseController {
 		$electronicAddress = new ElectronicAddress();
 		$electronicAddress->setType(ElectronicAddress::TYPE_EMAIL);
 		$electronicAddress->setIdentifier($registration->getEmail());
-		$user = new User();
+		$user = $this->objectManager->get($this->settings['userObject']);
 		$user->setName(new PersonName('', $registration->getFirstName(), '', $registration->getLastName(), '', $registration->getUsername()));
 		$user->addElectronicAddress($electronicAddress);
 		$this->partyRepository->add($user);

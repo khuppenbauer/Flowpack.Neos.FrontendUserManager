@@ -24,6 +24,7 @@ Flowpack:
   Neos:
     FrontendUserManager:
       providerName: FrontendProvider
+      userObject: 'TYPO3\Neos\Domain\Model\User'
       registration:
         defaultRole:
           - 'Flowpack.Neos.FrontendUserManager:User'

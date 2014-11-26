@@ -39,13 +39,19 @@ class AuthenticationHelper implements ProtectedContextAwareInterface {
 	/**
 	 * Returns the Users Fullname or the Account Identifier
 	 *
-	 * @return string the rendered string
+	 * @param $providerName
+	 * @param string $returnValue
+	 * @return mixed
 	 */
-	public function identifier() {
-		$user = $this->securityContext->getPartyByType('TYPO3\Neos\Domain\Model\User');
-		/** @var  \TYPO3\Neos\Domain\Model\User $user */
+	public function identifier($providerName, $returnValue = 'user') {
+		$user = $this->securityContext->getPartyByType($providerName);
 		if ($user !== NULL) {
-			return ($user->getName() !== NULL) ? $user->getName()->getFullname() : $this->securityContext->getAccount()->getAccountIdentifier();
+			switch ($returnValue) {
+				case 'user':
+					return $user;
+				case 'identifier':
+					return $user->getName()->getAlias();
+			}
 		}
 	}
 

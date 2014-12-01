@@ -19,12 +19,12 @@ TYPO3:
     rendering:
       exceptionHandler: TYPO3\TypoScript\Core\ExceptionHandlers\ThrowingHandler
     defaultContext:
-      Authentication: 'Flowpack\Neos\FrontendUserManager\Eel\AuthenticationHelper'
+      Authentication: Flowpack\Neos\FrontendUserManager\Eel\AuthenticationHelper
 Flowpack:
   Neos:
     FrontendUserManager:
       providerName: FrontendProvider
-      userObject: 'TYPO3\Neos\Domain\Model\User'
+      userObject: TYPO3\Neos\Domain\Model\User
       registration:
         defaultRole:
           - 'Flowpack.Neos.FrontendUserManager:User'

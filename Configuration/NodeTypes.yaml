@@ -1,24 +1,25 @@
 ##
 # A simple Frontend registration form
 #
+
 'TYPO3.Neos.NodeTypes:Page':
   properties:
     authenticationVisibility:
       type: string
-      defaultValue: 'always'
+      defaultValue: always
       ui:
         label: 'Authentication Visibility'
-        reloadIfChanged: TRUE
+        reloadIfChanged: true
         inspector:
-          group: 'visibility'
+          group: visibility
           editor: Content/Inspector/Editors/SelectBoxEditor
           editorOptions:
             values:
-              'always':
-                label: 'Always'
-              'hideAtAnyLogin':
+              always:
+                label: Always
+              hideAtAnyLogin:
                 label: 'Hide at any Login'
-              'showAtAnyLogin':
+              showAtAnyLogin:
                 label: 'Show at any Login'
 'Flowpack.Neos.FrontendUserManager:Login':
   superTypes:

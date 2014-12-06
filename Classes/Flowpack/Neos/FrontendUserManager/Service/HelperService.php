@@ -7,13 +7,14 @@ namespace Flowpack\Neos\FrontendUserManager\Service;
  *                                                                                   */
 
 use TYPO3\Flow\Annotations as Flow;
+use TYPO3\Flow\Mvc\ActionRequest;
 use TYPO3\Flow\Mvc\Controller\ControllerContext;
 use TYPO3\TYPO3CR\Domain\Model\NodeInterface;
 
 /**
  * Helper methods for Node Handling
  */
-class NodeHelperService {
+class HelperService {
 
 	/**
 	 * Returns the Uri of a given node
@@ -34,5 +35,16 @@ class NodeHelperService {
 				->setCreateAbsoluteUri(TRUE)
 				->setFormat($request->getFormat())
 				->uriFor('show', array('node' => $node), 'Frontend\Node', 'TYPO3.Neos');
+	}
+
+	/**
+	 * @param ActionRequest $request
+	 * @return string
+	 */
+	public function getUriFromRequest(ActionRequest $request) {
+		while (!$request->isMainRequest()) {
+			$request = $request->getParentRequest();
+		}
+		return $request->getParentRequest()->getUri()->getPath();
 	}
 }

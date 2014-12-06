@@ -9,7 +9,7 @@ namespace Flowpack\Neos\FrontendUserManager\Controller;
 use TYPO3\Flow\Annotations as Flow;
 use TYPO3\Flow\Mvc\Controller\ActionController;
 use TYPO3\Neos\Domain\Repository\DomainRepository;
-use Flowpack\Neos\FrontendUserManager\Service\NodeHelperService;
+use Flowpack\Neos\FrontendUserManager\Service\HelperService;
 
 /**
  * An action controller with base functionality
@@ -27,10 +27,10 @@ abstract class AbstractBaseController extends ActionController {
 	/**
 	 * The pluginService
 	 *
-	 * @var NodeHelperService
+	 * @var HelperService
 	 * @Flow\Inject
 	 */
-	protected $nodeHelperService;
+	protected $helperService;
 
 	/**
 	 * @var array

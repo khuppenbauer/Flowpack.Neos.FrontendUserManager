@@ -61,10 +61,10 @@ class LogoutController extends AbstractBaseController {
 			if ($redirectNode === NULL) {
 				$redirectNode = $node->getContext()->getCurrentSiteNode();
 			}
+			$uri = $this->helperService->getUriForNode($redirectNode, $this->controllerContext);
 		} else {
-			$redirectNode = $node;
+			$uri = $this->helperService->getUriFromRequest($this->request);
 		}
-		$uri = $this->nodeHelperService->getUriForNode($redirectNode, $this->controllerContext);
 		$this->redirectToUri($uri);
 	}
 

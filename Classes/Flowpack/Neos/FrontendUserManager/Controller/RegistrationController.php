@@ -121,7 +121,7 @@ class RegistrationController extends AbstractBaseController {
 		if ($redirectNode === NULL) {
 			$redirectNode = $node->getContext()->getCurrentSiteNode();
 		}
-		$uri = $this->nodeHelperService->getUriForNode($redirectNode, $this->controllerContext);
+		$uri = $this->helperService->getUriForNode($redirectNode, $this->controllerContext);
 		$this->redirectToUri($uri);
 	}
 

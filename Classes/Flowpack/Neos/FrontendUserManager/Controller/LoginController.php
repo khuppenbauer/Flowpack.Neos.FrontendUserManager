@@ -10,7 +10,7 @@ use TYPO3\Flow\Annotations as Flow;
 use TYPO3\Flow\Mvc\ActionRequest;
 use TYPO3\Flow\Security\Authentication\Controller\AbstractAuthenticationController;
 use TYPO3\TYPO3CR\Domain\Model\NodeInterface;
-use Flowpack\Neos\FrontendUserManager\Service\NodeHelperService;
+use Flowpack\Neos\FrontendUserManager\Service\HelperService;
 
 /**
  * Controller that handles the frontend login
@@ -20,10 +20,10 @@ class LoginController extends AbstractAuthenticationController {
 	/**
 	 * The pluginService
 	 *
-	 * @var NodeHelperService
+	 * @var HelperService
 	 * @Flow\Inject
 	 */
-	protected $nodeHelperService;
+	protected $helperService;
 
 	/**
 	 * @return void
@@ -44,10 +44,10 @@ class LoginController extends AbstractAuthenticationController {
 			if ($redirectNode === NULL) {
 				$redirectNode = $node->getContext()->getCurrentSiteNode();
 			}
+			$uri = $this->helperService->getUriForNode($redirectNode, $this->controllerContext);
 		} else {
-			$redirectNode = $node;
+			$uri = $this->helperService->getUriFromRequest($this->request);
 		}
-		$uri = $this->nodeHelperService->getUriForNode($redirectNode, $this->controllerContext);
 		$this->redirectToUri($uri);
 	}
 

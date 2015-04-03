@@ -19,7 +19,7 @@ class Registration {
 	 * @Flow\Validate(type="Label")
 	 * @Flow\Validate(type="NotEmpty")
 	 * @Flow\Validate(type="StringLength", options={ "minimum"=1, "maximum"=255 })
-	 * @Flow\Validate(type="\TYPO3\Neos\Validation\Validator\AccountExistsValidator", options={ "authenticationProviderName"=PROVIDER_NAME})
+	 * @Flow\Validate(type="\Flowpack\Neos\FrontendUserManager\Validation\Validator\AccountExistsValidator", options={ "authenticationProviderName"=PROVIDER_NAME})
 	 */
 	protected $username = '';
 

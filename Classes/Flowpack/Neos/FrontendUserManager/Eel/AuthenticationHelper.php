@@ -15,6 +15,8 @@ namespace Flowpack\Neos\FrontendUserManager\Eel;
 use TYPO3\Eel\ProtectedContextAwareInterface;
 use TYPO3\Flow\Annotations as Flow;
 use TYPO3\Flow\Security\Context;
+use TYPO3\Flow\Security\Authentication\TokenInterface;
+use TYPO3\Party\Domain\Service\PartyService;
 
 /**
  * Eel Helper to get Authentication Information in TypoScript
@@ -25,6 +27,12 @@ class AuthenticationHelper implements ProtectedContextAwareInterface {
 	 * @var Context
 	 */
 	protected $securityContext;
+
+	/**
+	 * @Flow\Inject
+	 * @var PartyService
+	 */
+	protected $partyService;
 
 	/**
 	 * Injects the Security Context
@@ -44,8 +52,11 @@ class AuthenticationHelper implements ProtectedContextAwareInterface {
 	 * @return mixed
 	 */
 	public function identifier($providerName, $returnValue = 'user') {
-		$user = $this->securityContext->getPartyByType($providerName);
-		if ($user !== NULL) {
+		$account = $this->securityContext->getAccount();
+		if ($account !== NULL) {
+			$user = $this->partyService->getAssignedPartyOfAccount($account);
+		}
+		if (!empty($user) && $user instanceof $providerName) {
 			switch ($returnValue) {
 				case 'user':
 					return $user;

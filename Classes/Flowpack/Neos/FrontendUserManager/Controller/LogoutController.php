@@ -34,9 +34,6 @@ class LogoutController extends AbstractBaseController {
 	 * @return string
 	 */
 	public function logoutAction() {
-		if ($this->authenticationManager->isAuthenticated() !== TRUE) {
-			return '';
-		}
 		$this->isAuthenticated = NULL;
 		/** @var $token TokenInterface */
 		foreach ($this->securityContext->getAuthenticationTokens() as $token) {

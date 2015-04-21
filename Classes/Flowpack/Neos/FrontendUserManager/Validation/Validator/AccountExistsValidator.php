@@ -41,7 +41,6 @@ class AccountExistsValidator extends \TYPO3\Flow\Validation\Validator\AbstractVa
 	 * @throws \TYPO3\Flow\Validation\Exception\InvalidSubjectException
 	 */
 	protected function isValid($value) {
-		\TYPO3\Flow\var_dump($value);
 		if (!is_string($value)) {
 			throw new \TYPO3\Flow\Validation\Exception\InvalidSubjectException('The given account identifier was not a string.', 1325155784);
 		}
